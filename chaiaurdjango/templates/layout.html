@@ -1,0 +1,25 @@
+{% load static %}
+
+<!--note : between below two blocks like this have difference from it's
+titles below which are "title" & "content"-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        Homepage
+        {% endblock %}
+    </title>
+    <!-- template engine -->
+    <!--    we are injecting style.css-->
+    <link rel="stylesheet" hr ef="{% static 'contact.css' %}">
+</head>
+<body>
+    <nav>This is our nav bar:</nav>
+    
+    {% block content %}
+        <h1>default value</h1> 
+    {% endblock %}
+</body>
+</html>
