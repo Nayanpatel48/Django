@@ -11,5 +11,6 @@
             <img src="{{chai.image.url}}" alt="">
             <h3>{{chai.name}}</h3>
         </div>
+        <a href="{% url 'chai_detail' chai.id %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Primary link</a>
     {% endfor %}
 {% endblock %}
