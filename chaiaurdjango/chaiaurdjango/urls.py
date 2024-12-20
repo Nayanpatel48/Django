@@ -13,4 +13,8 @@ urlpatterns = [
 
     # whenever i am hitting this url i am transfering control to an app urls
     path('chai/', include('chai.urls')),
+
+    # whenever i am hitting this url i am transfering control to an app urls
+    path('shopping/', include('login.urls'))
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
