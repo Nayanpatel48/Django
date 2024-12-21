@@ -1,37 +1,42 @@
 {% extends 'shopping.html' %}
 
 {% block title %}
-    register page
+    Register Page
 {% endblock %}
 
 {% block content %}
-<form>
+<form method="POST" enctype="multipart/form-data" action="{% url 'register' %}">
+    {% csrf_token %}
 
     <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username">
+        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter your username" required>
         <div id="usernameHelp" class="form-text">Choose a unique username.</div>
-    </div>    
+    </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 
     <div class="mb-3">
         <label for="phoneNumber" class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneHelp" placeholder="Enter your phone number">
-    </div>  
-
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+        <input type="tel" class="form-control" id="phoneNumber" name="phone_number" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
     </div>
 
-    <button type="submit" class="btn btn-primary">register</button>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
 
-    <p>Already have an account:<a href="{% url 'login' %}">login</a></p>
+    <div class="mb-3">
+        <label for="profileImage" class="form-label">Profile Image</label>
+        <input type="file" class="form-control" id="profileImage" name="profile_image" accept="image/*" onchange="previewImage(event)">
+    </div>
 
-  </form>
+    <button type="submit" class="btn btn-primary">Register</button>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</form>
 {% endblock %}
