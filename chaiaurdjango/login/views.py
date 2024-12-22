@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 # A Django ModelForm imported from the forms.py file, which handles the user registration process.
 
+from .models import UserProfile
+
 def register(request):
     # This defines the register view function, which takes an HttpRequest object (request) as 
     # its argument.
@@ -35,3 +37,12 @@ def register(request):
 
 def success(request):
     return render(request, 'success.html')
+
+def user_list(request):
+    users = UserProfile.objects.all()
+    # UserProfile.objects.all() is a Django ORM query that retrieves all 
+    # records from the UserProfile table in the database.
+
+    return render(request, 'user_list.html', {'users': users})
+# this function retrieves all the UserProfile objects from the database & render 
+# them in the HTML template

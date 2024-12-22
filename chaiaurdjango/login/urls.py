@@ -13,4 +13,6 @@ urlpatterns = [
     path('success/', views.success, name='success'),
     # this URL is for the registration success page.
     # Example: Accessing http://127.0.0.1:8000/success_page/ will display success page.
+
+    path('user_list/', views.user_list, name='user_list'),
 ]
