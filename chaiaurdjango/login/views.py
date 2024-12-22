@@ -21,7 +21,7 @@ def register(request):
             form.save()
             # Saves the valid form data to the database.
 
-            return redirect('success_page')
+            return redirect('success')
             # Redirects the user to a success page (e.g., a "Registration Successful" page) 
             # after the form is successfully saved.
     else:
@@ -32,3 +32,6 @@ def register(request):
     #Renders the register.html template with the form context variable.
     #If the form is empty (GET request) or contains invalid data (POST 
     # request), it is passed back to the template for display.
+
+def success(request):
+    return render(request, 'success.html')

@@ -15,7 +15,7 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = UserProfile
 
-        fields=['usename', 'email', 'phone_number', 'profile_image']
+        fields=['username', 'email', 'phone_number', 'profile_image']
         # the list of fields from the model that should be included in the form.
 
         widgets = {

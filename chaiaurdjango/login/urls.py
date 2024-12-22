@@ -6,17 +6,11 @@ from . import views
 # urls
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    # / (the root URL for this app)
-    # This is the homepage for the app. When someone accesses the base URL of 
-    # this app (e.g., http://127.0.0.1:8000/ if this app is directly included 
-    # in the project), the home view function will handle the request.
-
-    path('login/', views.login, name='login'),
-    # This URL is for the login page of the application.
-    # Example: Accessing http://127.0.0.1:8000/login/ will display the login form.
+    path('', views.register, name='register'),
+    # This URL is for the register page of the application.
+    # Example: Accessing http://127.0.0.1:8000/register/ will display the register form.
     
-    path('register/', views.register, name='register'),
-    # his URL is for the registration page where new users can sign up for the application.
-    # Example: Accessing http://127.0.0.1:8000/register/ will display a registration form.
+    path('success/', views.success, name='success'),
+    # this URL is for the registration success page.
+    # Example: Accessing http://127.0.0.1:8000/success_page/ will display success page.
 ]
