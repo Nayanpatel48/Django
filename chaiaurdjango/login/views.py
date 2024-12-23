@@ -7,6 +7,18 @@ from .forms import UserRegistrationForm
 
 from .models import UserProfile
 
+from django.contrib.auth import authenticate, login
+
+from django.contrib import messages
+# this will help to display a one time message (success/ error)
+
+from django.contrib.auth.decorators import login_required
+# a Django utility which ensures that only authenticated user will be able to access the specific
+# view
+
+from django.contrib.auth import logout
+# a function provided by Django for log out the user
+
 def register(request):
     # This defines the register view function, which takes an HttpRequest object (request) as 
     # its argument.
@@ -46,3 +58,41 @@ def user_list(request):
     return render(request, 'user_list.html', {'users': users})
 # this function retrieves all the UserProfile objects from the database & render 
 # them in the HTML template
+
+# below function based-view handles the user login functionality. It will check 
+# the user credentials such as username and password and loggs in if they are valid.
+def login_view(request):
+    # Redirect already-logged-in users to the dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        # Process login form
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Invalid username or password.')
+
+    # For GET requests, render the login form
+    return render(request, 'login.html')
+
+# This fuction based-view should check if the user is authenticated.
+@login_required
+def dashboard_view(request):
+    return render(request, 'dashboard.html', {'user' : request.user})
+    # {'user' : request.user} is a context data passed to the tamplate
+
+# This function-based view will handle the logout request by user
+def logout_view(request):
+    logout(request)
+    # this function call performs the logout operation
+
+    return redirect('login')
+    # After the user has been logged out they are redirected to the login.html page
+
+
