@@ -40,4 +40,8 @@ urlpatterns = [
 
     path('logout/', views.logout_view, name = 'logout'),
     # when ever /logout/ hitted logout page is will be displayed
+
+    path('search/', views.search_items, name='search_items'),
+    
+    path('upload/', views.upload_item, name='upload_item'),
 ]

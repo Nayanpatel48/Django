@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 # A Django ModelForm imported from the forms.py file, which handles the user registration process.
 
-from .models import UserProfile
+from .models import UserProfile, Item
 
 from django.contrib.auth import authenticate, login
 
@@ -18,6 +18,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import logout
 # a function provided by Django for log out the user
+
+from .forms import ItemSearchForm, ItemUploadForm
+# Forms defined earlier for searching and uploading items.
 
 def register(request):
     # This defines the register view function, which takes an HttpRequest object (request) as 
@@ -94,5 +97,30 @@ def logout_view(request):
 
     return redirect('login')
     # After the user has been logged out they are redirected to the login.html page
+
+# View for searching items
+@login_required
+def search_items(request):
+    form = ItemSearchForm(request.GET or None)
+    results = None
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        results = Item.objects.filter(name__icontains=query)
+    return render(request, 'search_items.html', {'form': form, 'results': results})
+
+# View for uploading items
+@login_required
+def upload_item(request):
+    if request.method == 'POST':
+        form = ItemUploadForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.uploaded_by = request.user  # Associate the item with the logged-in user
+            item.save()
+            return redirect('dashboard')  # Redirect to dashboard after upload
+    else:
+        form = ItemUploadForm()
+    return render(request, 'upload_item.html', {'form': form})
+
 
 

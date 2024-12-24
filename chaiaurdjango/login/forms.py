@@ -9,6 +9,9 @@ from django import forms
 from .models import UserProfile
 # imported 'UserProfile' model from models to use it
 
+from .models import Item
+# The model defined in your project that represents the items (e.g., products).
+
 class UserRegistrationForm(forms.ModelForm):
     # parameter forms.ModelForm automatically maps model fields to form fields.
     
@@ -26,3 +29,14 @@ class UserRegistrationForm(forms.ModelForm):
         }
         # widgets customizes how the forms fields are rendered in HTML by specifying their attributes.
         # Here, fields are styled using css classes & placeholders.
+
+# This is a basic form that allows users to search for items.
+class ItemSearchForm(forms.Form):
+    query = forms.CharField(label="Search Items", max_length=200)
+
+# This is a model-based form that allows users to upload or edit items.
+class ItemUploadForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['name', 'description', 'price']
+

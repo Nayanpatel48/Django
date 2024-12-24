@@ -4,7 +4,9 @@
 from django.utils.timezone import now 
 from django.db import models
 
-# Create your models here.
+from django.contrib.auth.models import User
+# Django's built in model for managing user authentication and user-related operations
+
 class UserProfile(models.Model):
     # here unique field in the django parameters ensures that the value is unique accross 
     # all rrecords in the database
@@ -27,3 +29,15 @@ class UserProfile(models.Model):
     # special method in django which defines the "string representation of object."
     # used in many places one of them is django admin panel for viewing 
     
+# This class represents an item or product in the database.
+class Item(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="uploaded_items")
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    # Stores the timestamp when the item was created.
+
+    def __str__(self):
+        return self.name
