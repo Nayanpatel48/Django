@@ -5,6 +5,7 @@
     <label for="password">Password:</label>
     <input type="password" name="password" id="password" required>
     <button type="submit">Login</button>
+    <p>Don't have an account? <a href="{% url 'register' %}">register</a></p>
 </form>
 {% for message in messages %}
 <p>{{ message }}</p>

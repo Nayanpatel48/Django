@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.username
     # special method in django which defines the "string representation of object."
-    # used in many places one of them is django admin panel for viewing 
+    # used in many places one of them is django admin panel for viewing
     
 # This class represents an item or product in the database.
 class Item(models.Model):
