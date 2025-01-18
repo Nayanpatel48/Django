@@ -1,4 +1,4 @@
-## Django Key Concepts
+# Django Key Concepts
 
 ### 1. **Model**
 - Models are used to create tables inside a database. They define the structure of the database, including fields and their data types.
@@ -24,8 +24,8 @@
 
 ---
 
-### App1:
-## App1 table (Created Using Model):
+# App1:
+### App1 table (Created Using Model):
 ![Image](https://github.com/user-attachments/assets/86af525c-a86e-4c37-b175-f6544cbf6bbc)
-## frontend:
+### frontend:
 ![image](image_url_here)  
