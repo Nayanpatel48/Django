@@ -7,4 +7,4 @@ class Student(models.Model):
     
     # special method in python which defines the string representation of object
     def __str__(self):
-        return self.title
+        return self.name
