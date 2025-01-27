@@ -4,7 +4,7 @@
 {% block title %}Student List{% endblock %}
 
 {% block content %}
-    <h1>Student List</h1>
+    <h1 class="bg-slate-400">Student List</h1>
     <ul>
         {% for student in students %}
             <li>{{ student.name }} - {{ student.age }} - {{ student.grade }}</li>
